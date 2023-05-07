@@ -1,0 +1,8 @@
+development:
+  password: shptka_2a7040cb301db4305d43f60c9ed4e86d
+  theme_id: '149072642366'
+  store: fluffyy-flips.myshopify.com
+  ignore_files:
+    - /\.(txt|gif|bat)$/
+    - '*.liquid___jb_tmp___'
+    - '*.liquid___jb_old___'

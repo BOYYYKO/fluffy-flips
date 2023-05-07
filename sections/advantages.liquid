@@ -1,0 +1,125 @@
+{{ 'section-advantages.css' | asset_url | stylesheet_tag }}
+
+<section class="advantages page-width">
+    <div class="advantages-content">
+        <div class="label">
+            <h4 style="color: {{ section.settings.title-color }};">{{ section.settings.title }}</h4>
+        </div>
+        <div class="sections">
+            <div class="block">
+            {% for block in section.blocks %}
+            {% assign isOdd = forloop.index | modulo: 2 %}
+                {% if isOdd == 0 %}
+                    <div class="advantage">
+                        <div class="image-container">
+                            <img src="{{ block.settings.image | img_url: "master"}}" alt="">
+                        </div>
+                        <div class="text">
+                            <div class="label" style="color: {{ block.settings.title-color }};">
+                                {{ block.settings.title }}
+                            </div>
+                            <div class="description" style="color: {{ block.settings.text-color }};">
+                                {{ block.settings.text }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+
+            <div class="block main-image">
+                <div class="image-container">
+                    <img src="{{ section.settings.main-picture | img_url: "master"}}" alt="">
+                </div>
+            </div>
+            
+            <div class="block">
+                {% for block in section.blocks%}
+                    {% assign isOdd = forloop.index | modulo: 2 %}
+                    {% if isOdd == 1 %}
+                        <div class="advantage">
+                            <div class="image-container">
+                                <img src="{{ block.settings.image | img_url: "master"}}" alt="">
+                            </div>
+                            <div class="text">
+                                <div class="label"  style="color: {{ block.settings.title-color }};">
+                                    {{ block.settings.title }}
+                                </div>
+                                <div class="description"  style="color: {{ block.settings.text-color }};">
+                                    {{ block.settings.text }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "advantages",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "title",
+            "default": "Life's Hard, Your Footwear Shouldn't Be."
+        },
+        {
+            "type": "image_picker",
+            "id": "main-picture",
+            "label": "Main picture"
+        },
+        {
+            "type": "color",
+            "id": "title-color",
+            "label": "Title color",
+            "default": "#121212"
+          }
+    ],
+    "blocks": [
+        {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+            {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "title"
+            },
+            {
+                "type": "color",
+                "id": "title-color",
+                "label": "Title color",
+                "default": "#121212"
+            },
+            {
+                "type": "text",
+                "id": "text",
+                "label": "text"
+            },
+            {
+                "type": "color",
+                "id": "text-color",
+                "label": "Text color",
+                "default": "#121212"
+            }
+        ]
+        }
+    ],
+
+    "presets": [
+        {
+            "category": "advantages",
+            "name": "advantages"
+        }
+    ]
+}
+{% endschema %}
